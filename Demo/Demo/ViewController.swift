@@ -15,22 +15,22 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
     let transition = BubbleTransition()
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         let controller = segue.destinationViewController
         controller.transitioningDelegate = self
-        controller.modalPresentationStyle = .Custom
+        controller.modalPresentationStyle = .custom
     }
 
     // MARK: UIViewControllerTransitioningDelegate
 
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresentedController presented: UIViewController, presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .Present
         transition.startingPoint = transitionButton.center
         transition.bubbleColor = transitionButton.backgroundColor!
         return transition
     }
 
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissedController dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .Dismiss
         transition.startingPoint = transitionButton.center
         transition.bubbleColor = transitionButton.backgroundColor!
